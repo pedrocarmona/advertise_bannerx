@@ -1,0 +1,2 @@
+defmodule AdvertiseBannerx do
+end
