@@ -1,29 +1,22 @@
 defmodule AdvertiseBannerx do
   use Application
+
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
- 
+
+    IO.puts "starting"
+
     children = [
-      # Optional worker child for HelloWorld.run/0
-      worker(__MODULE__, [], function: :run)
+      # Define workers and child supervisors to be supervised
+      # worker(AdvertiseBannerx.Worker, [arg1, arg2, arg3]),
+      worker(AdvertiseBannerx.Worker, []),
     ]
+
+    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: AdvertiseBannerx.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  def run do
-    # Routes for our application
-    routes = [
-      {"/", AdvertiseBannerx.Handler, []}
-    ]
-
-    # Compile our routes so Cowboy knows
-    # how to dispatch requests
-    dispatch = :cowboy_router.compile([{:_, routes}])
-
-    # Set some options
-    opts = [port: 8080]
-    env = [dispatch: dispatch]
-    {:ok, _pid} = :cowboy.start_http(:http, 100, opts, [env: env])
   end
 end

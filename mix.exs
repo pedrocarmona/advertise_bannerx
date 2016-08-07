@@ -14,7 +14,8 @@ defmodule AdvertiseBannerx.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :cowboy, :plug]]
+    [applications: [:logger, :cowboy, :plug],
+     mod: {AdvertiseBannerx, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -27,8 +28,11 @@ defmodule AdvertiseBannerx.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   def deps do
-	[{:cowboy, "~> 1.0.0"},
-	 {:plug, "~> 1.0"}]
+  	[{:cowboy, "~> 1.0.0"},
+  	 {:plug, "~> 1.0"},
+     {:credo, "~> 0.4", only: [:dev, :test]}
+     #{:mix_test_watch, "~> 0.2", only: :dev}
+    ]
   end
 end
 

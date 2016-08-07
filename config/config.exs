@@ -11,7 +11,9 @@ use Mix.Config
 # You can configure for your application as:
 #
 #     config :advertise_bannerx, key: :value
-#
+config :advertise_bannerx, 
+  port: 8080
+
 # And access this configuration in your application as:
 #
 #     Application.get_env(:advertise_bannerx, :key)
